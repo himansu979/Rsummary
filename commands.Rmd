@@ -7,9 +7,29 @@ output: html_document
 
 Below are a quick summary of commands for data analysis in R.
 
+### Basic commands about the library and getting dataset
+```{r}
+#.libPaths() # installed R library path
+#library() # list all available packages in the library
+#search()
+#ls(); objects() # list of objects in the environment
+#getwd(); setwd("/Users/dir/") # set working directory
+#dir() # list of files in the working directory
+#install.packages("packagename")
+#installed.packages()
+#update.packages()
+#library(datasets); data(), data(iris) # list of datasets in datasets package
+#search()
+#source("file.R") # run a R code
+#data(package = .packages(all.available = TRUE)) # list of datasets in all available packages
+#data(package="dplyr") # list of datasets in the package dplyr
+```
+
 ### Commands to explore a dataset
 
 ```{r}
+#library(iris); attach(iris) # loads the library in the search path
+# data(iris)
 #class(dataset)
 #dim(dataset); nrow(dataset); ncol(dataset)
 #dim(dataset)[1] # number of rows
@@ -23,7 +43,7 @@ Below are a quick summary of commands for data analysis in R.
 
 
 ```{r}
-#names(dataset) # print column names or variable names
+#names(dataset); colnames(dataset) # print column names or variable names
 #str(dataset) # class of each variable
 #summary(dataset) # five number summary of each variable, will shows NA's, empty values
 #colSums(is.na(dataset)) # number of missing values for each variable
@@ -41,7 +61,7 @@ Below are a quick summary of commands for data analysis in R.
 #as.factor(var_numeric) # change a numeric variable to a factor variable
 ```
 
-### Statistics of a numeric variable
+### Statistics about a numeric variable
 ```{r}
 #mean(var, na.rm=TRUE) # calculate mean, the default value na.rm=FALSE
 # = sum(var)/length(var)

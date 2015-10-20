@@ -69,9 +69,28 @@ img {
 
 
 <p>Below are a quick summary of commands for data analysis in R.</p>
+<div id="basic-commands-about-the-library-and-getting-dataset" class="section level3">
+<h3>Basic commands about the library and getting dataset</h3>
+<pre class="r"><code>#.libPaths() # installed R library path
+#library() # list all available packages in the library
+#search()
+#ls(); objects() # list of objects in the environment
+#getwd(); setwd(&quot;/Users/dir/&quot;) # set working directory
+#dir() # list of files in the working directory
+#install.packages(&quot;packagename&quot;)
+#installed.packages()
+#update.packages()
+#library(datasets); data(), data(iris) # list of datasets in datasets package
+#search()
+#source(&quot;file.R&quot;) # run a R code
+#data(package = .packages(all.available = TRUE)) # list of datasets in all available packages
+#data(package=&quot;dplyr&quot;) # list of datasets in the package dplyr</code></pre>
+</div>
 <div id="commands-to-explore-a-dataset" class="section level3">
 <h3>Commands to explore a dataset</h3>
-<pre class="r"><code>#class(dataset)
+<pre class="r"><code>#library(iris); attach(iris) # loads the library in the search path
+# data(iris)
+#class(dataset)
 #dim(dataset); nrow(dataset); ncol(dataset)
 #dim(dataset)[1] # number of rows
 #dim(dataset)[2] # number of columns
@@ -80,7 +99,7 @@ img {
 #head(dataset, n=100) # print first 100 rows
 #tail(dataset) # print last 6 rows
 #tail(dataset, n=100) # print last 100 rows</code></pre>
-<pre class="r"><code>#names(dataset) # print column names or variable names
+<pre class="r"><code>#names(dataset); colnames(dataset) # print column names or variable names
 #str(dataset) # class of each variable
 #summary(dataset) # five number summary of each variable, will shows NA's, empty values
 #colSums(is.na(dataset)) # number of missing values for each variable
@@ -96,8 +115,8 @@ img {
 #sum(is.na(var)) # how many NA's in a vector
 #as.factor(var_numeric) # change a numeric variable to a factor variable</code></pre>
 </div>
-<div id="statistics-of-a-numeric-variable" class="section level3">
-<h3>Statistics of a numeric variable</h3>
+<div id="statistics-about-a-numeric-variable" class="section level3">
+<h3>Statistics about a numeric variable</h3>
 <pre class="r"><code>#mean(var, na.rm=TRUE) # calculate mean, the default value na.rm=FALSE
 # = sum(var)/length(var)
 #meadian(var, na.rm=TRUE) # calculate median
