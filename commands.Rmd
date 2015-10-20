@@ -53,7 +53,18 @@ Below are a quick summary of commands for data analysis in R.
 #sd(var) # standard deviation (sqrt(var(variable)))
 ```
 
-
+### Git and Github related
+```
+First clone a github repository to the local computer.
+git clone https://github.com/himansu979/Rsummary.git
+cd Rsummary/
+git status
+git add --all
+git status
+git commit -m "adding new file"
+git status
+git push
+```
 
 
 
