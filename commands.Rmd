@@ -1,0 +1,65 @@
+---
+title: "commands"
+author: "Himansu Sahoo"
+date: "October 20, 2015"
+output: html_document
+---
+
+Below are a quick summary of commands for data analysis in R.
+
+### Commands to explore a dataset
+
+```{r}
+#class(dataset)
+#dim(dataset); nrow(dataset); ncol(dataset)
+#dim(dataset)[1] # number of rows
+#dim(dataset)[2] # number of columns
+#print(dataset) # print all the data
+#head(dataset) # print first 6 rows
+#head(dataset, n=100) # print first 100 rows
+#tail(dataset) # print last 6 rows
+#tail(dataset, n=100) # print last 100 rows
+```
+
+
+```{r}
+#names(dataset) # print column names or variable names
+#str(dataset) # class of each variable
+#summary(dataset) # five number summary of each variable, will shows NA's, empty values
+#colSums(is.na(dataset)) # number of missing values for each variable
+# data_new <- na.omit(dataset) # remove all missing values
+```
+
+### Commands to explore a numeric variable
+```{r}
+#class(var)
+#length(var)
+#summary(var) # five number summary, will show how many NA's
+#sort(var) # sort a vector
+#var[!is.na(var)]; na.omit(var) # remove NA's from a vector
+#sum(is.na(var)) # how many NA's in a vector
+#as.factor(var_numeric) # change a numeric variable to a factor variable
+```
+
+### Statistics of a numeric variable
+```{r}
+#mean(var, na.rm=TRUE) # calculate mean, the default value na.rm=FALSE
+# = sum(var)/length(var)
+#meadian(var, na.rm=TRUE) # calculate median
+#min(var), max(var), range(var) # minimum, maximum, range of avector
+#IQR(var, na.rom=TRUE) # inter quartile range
+#summary(var) # five number summary
+#var(variable) # variance of a variable (average/mean of the squarded differences from the mean)
+#sd(var) # standard deviation (sqrt(var(variable)))
+```
+
+
+
+
+
+
+
+
+
+
+
