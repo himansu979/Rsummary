@@ -1,7 +1,8 @@
 ---
-title: "commands"
+title: "Useful Commands in R"
 author: "Himansu Sahoo"
-date: "October 20, 2015"
+First draft date: "October 20, 2015"
+Recent modified : "April 27, 2016"
 output: html_document
 ---
 
@@ -15,14 +16,28 @@ Below are a quick summary of commands for data analysis in R.
 #ls(); objects() # list of objects in the environment
 #getwd(); setwd("/Users/dir/") # set working directory
 #dir() # list of files in the working directory
-#install.packages("packagename")
-#installed.packages()
-#update.packages()
 #library(datasets); data(), data(iris) # list of datasets in datasets package
 #search()
 #source("file.R") # run a R code
 #data(package = .packages(all.available = TRUE)) # list of datasets in all available packages
+#data() # list of datasets in all packages
 #data(package="dplyr") # list of datasets in the package dplyr
+#alt+Apple+L  # to clear the screen
+#args(sd) # shows the arguments for the function
+#?sd() or help(sd) # for help for the function
+```
+
+### Installing packages
+```{r}
+#"packagename" %in% rownames(installed.packages()) # to check if a package is installed or not
+#packageDescription("caret")
+packageDescription("caret")[["Version"]]
+library("caret") # require("caret") # call a library
+#installed.packages()
+#update.packages()
+packageVersion("caret")
+#install.packages("packagename")
+#update.packages("packagename")
 ```
 
 ### Commands to explore a dataset
@@ -30,11 +45,11 @@ Below are a quick summary of commands for data analysis in R.
 ```{r}
 #library(iris); attach(iris) # loads the library in the search path
 # data(iris)
-#class(dataset)
+#class(dataset) # output is data.frame
 #dim(dataset); nrow(dataset); ncol(dataset)
 #dim(dataset)[1] # number of rows
 #dim(dataset)[2] # number of columns
-#print(dataset) # print all the data
+#print(dataset) # print all the data, don't do this, it will print everything
 #head(dataset) # print first 6 rows
 #head(dataset, n=100) # print first 100 rows
 #tail(dataset) # print last 6 rows
@@ -54,6 +69,7 @@ Below are a quick summary of commands for data analysis in R.
 ```{r}
 #class(var)
 #length(var)
+#str(var)
 #summary(var) # five number summary, will show how many NA's
 #sort(var) # sort a vector
 #var[!is.na(var)]; na.omit(var) # remove NA's from a vector
@@ -72,6 +88,18 @@ Below are a quick summary of commands for data analysis in R.
 #var(variable) # variance of a variable (average/mean of the squarded differences from the mean)
 #sd(var) # standard deviation (sqrt(var(variable)))
 ```
+
+### Commands to explore a categorical variable
+```{r}
+#class(var)
+#length(var)
+#str(var)
+#summary(var) # five number summary, will show how many NA's
+#table(var)
+#prop.table(table(var))
+```
+
+
 
 ### Git and Github related
 ```
