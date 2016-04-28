@@ -1,0 +1,113 @@
+---
+title: "Common SQL Commands in R"
+author: "Himansu Sahoo"
+First draft date: "April 28, 2016"
+Recent modified : "April 27, 2016"
+output: html_document
+---
+
+Below are a quick summary of commands for data analysis in R using SQL.
+[SQL tutorial](https://www.1keydata.com/sql/sql.html)
+
+### SQL keywords
+```{r}
+library(sqldf)
+in_data <- iris
+dim(in_data)
+names(in_data)
+levels(in_data$Species)
+```
+
+#### SELECT keyword
+Select data from tables located in database. Table is a container, that contains data and stored in database. Note that the name is not case sensitive. You can put variables in any order. You can select single column, multiple columns and all columns.
+
+```{r}
+#sqldf('select * from in_data') # prints all 150 rows
+#sqldf('select * from in_data limit 5') # prints 5 rows
+sqldf('select `sepal.Length`, Species from in_data limit 5')
+```
+
+#### DISTINCT keyword
+
+DISTINCT keyword only prints the levels of factor variable. It will remove rows with same names, we see there is only three Species.
+```{r}
+sqldf('select distinct Species from in_data')
+```
+
+#### ORDER BY keyword
+
+order by keyword orders the rows in increasing order.  
+order by ASC : is the default one  
+order by DESC : in deceasing order
+
+```{r}
+#sqldf('select Species, `Sepal.Length` from in_data order by `sepal.length` limit 10')
+sqldf('select Species, `Sepal.Length` from in_data order by `sepal.length` ASC limit 10') # same as the above
+#sqldf('select Species, `Sepal.Length` from in_data order by `sepal.length` DESC limit 10') # decreasing order
+# remove the duplicated rows using distinct 
+sqldf('select distinct Species, `Sepal.Length` from in_data order by `sepal.length` limit 10')
+```
+
+Order by : increasing order of sepal length, decreasing order sepal width
+```{r}
+sqldf('select Species, `sepal.length`, `sepal.width` from in_data order by `sepal.length` limit 10')
+sqldf('select Species, `sepal.length`, `sepal.width` from in_data order by `sepal.length`,`sepal.width` DESC limit 10')
+```
+
+#### min, max, sum, count, avg, round
+
+```{r}
+sqldf('select min(`sepal.length`) from in_data')
+sqldf('select max(`sepal.length`) from in_data')
+sqldf('select count(*) from in_data') # all observations
+sqldf('select count(`sepal.length`) from in_data')
+sqldf('select sum(`sepal.length`) from in_data')
+sqldf('select avg(`sepal.length`) from in_data')
+```
+
+#### WHERE keyword, IN, BETWEEN, NOT BETWEEN
+
+WHERE keyword is used to apply selection cuts. It comes at the end.  
+IN keyword is to limit the selection criteria to one or more discrete values, for categorical variable.
+BETWEEN keyword is to select a range for continuous variable.  
+WHERE keyword has to come before ORDER BY keyword
+
+```{r}
+sqldf('select count(*) from in_data')
+sqldf('select count(*) from in_data where Species="setosa"')
+sqldf('select count(*) from in_data where Species="setosa" or Species="versicolor"')
+sqldf('select count(*) from in_data where `sepal.length`<5 and (Species="setosa" or Species="versicolor")')
+sqldf('select count(*) from in_data where Species IN ("setosa", "versicolor")')
+
+sqldf('select count(Species) from in_data where (`Petal.Length`>3.0) and (`Petal.Length`<5.0) order by `Petal.Length`') # 53 entries
+sqldf('select count(Species) from in_data where `Petal.Length` between 3.0 AND 5.0 order by `Petal.Length`') # 58 entries
+# between is an inclusive operator, means the cut values are included, thats why it got 5 entries more.
+sqldf('select count(Species) from in_data where `Petal.Length` not between 3.0 AND 5.0 order by `Petal.Length`')
+```
+
+#### LIKE keyword
+```{r}
+sqldf('select * from in_data where Species="virginica" limit 5')
+sqldf('select * from in_data where Species LIKE "%gini%" limit 5')
+```
+
+#### group by keyword and then count
+```{r}
+sqldf('select distinct Species from in_data')
+sqldf('select Species from in_data group by Species') # group by is same as distinct
+sqldf('select Species,count(Species) from in_data group by Species') # for each species, print total observations
+sqldf('select Species,avg(`sepal.length`) avgL from in_data group by Species') # for each species, print the average of sepal length, avgL is column alias
+```
+
+#### Alias : column alias, table alias
+```{r}
+sqldf('select Species, `Sepal.Length` from in_data limit 4')
+sqldf('select DT.Species, DT.`Sepal.Length` from in_data DT limit 4') # table alias
+sqldf('select DT.Species type, DT.`Sepal.Length` L from in_data DT limit 4') # column alias
+# alias can be specified using AS keyword, this is more explicit way of calling
+sqldf('select DT.Species as type, DT.`Sepal.Length` as L from in_data as DT limit 4')
+```
+
+
+
+
